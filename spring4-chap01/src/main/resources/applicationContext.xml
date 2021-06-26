@@ -26,5 +26,21 @@
 		</property>
 	</bean>
 
+	<bean id="sampleJgkimProject"
+		  class="net.madvirus.spring4.chap01.JgkimProject">
+		<property name="srcDirs">
+			<list>
+				<value>src/</value>
+				<value>resources/</value>
+				<value>webapp/</value>
+				<value>test/</value>
+			</list>
+		</property>
+		<property name="binDir" value="jgkimBin/" />
+		<property name="buildRunner">
+			<ref bean="mvnBuildRunner" />
+		</property>
+	</bean>
+
 </beans>
 

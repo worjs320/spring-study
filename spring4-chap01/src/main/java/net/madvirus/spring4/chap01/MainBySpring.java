@@ -9,7 +9,7 @@ public class MainBySpring {
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = 
 				new GenericXmlApplicationContext(configLocation);
-		Project project = ctx.getBean("sampleProject", Project.class);
+		JgkimProject project = ctx.getBean("sampleJgkimProject", JgkimProject.class);
 		project.build();
 		ctx.close();
 	}
