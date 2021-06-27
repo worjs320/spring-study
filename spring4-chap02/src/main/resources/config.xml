@@ -14,12 +14,18 @@
 		<constructor-arg value="madvirus" />
 		<constructor-arg value="qwer" />
 	</bean>
+
+	<bean id="user3" class="net.madvirus.spring4.chap02.User">
+		<constructor-arg value="jgkim" />
+		<constructor-arg value="1234" />
+	</bean>
 	
 	<bean id="userRepository" class="net.madvirus.spring4.chap02.UserRepository">
 		<property name="users">
 			<list>
 				<ref bean="user1" />
 				<ref bean="user2" />
+				<ref bean="user3" />
 			</list>
 		</property>
 	</bean>

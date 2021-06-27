@@ -26,6 +26,13 @@ public class MainByXml {
 		pwChgSvc.changePassword("bkchoi", "1234", "5678");
 		runAuthAndCatchAuthEx(authSvc, "bkchoi", "1234");
 		authSvc.authenticate("bkchoi", "5678");
+
+		System.out.println("---------jgkim test---------");
+		authSvc.authenticate("jgkim", "1234");
+		pwChgSvc.changePassword("jgkim", "1234", "5678");
+		runAuthAndCatchAuthEx(authSvc, "jgkim", "5678");
+		authSvc.authenticate("jgkim", "5678");
+
 		ctx.close();
 	}
 
