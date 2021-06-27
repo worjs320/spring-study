@@ -24,10 +24,15 @@ public class Config {
 		return new User("madvirus", "qwer");
 	}
 
+	@Bean(name = "user3")
+	public User user3() {
+		return new User("jgkim", "1234");
+	}
+
 	@Bean
 	public UserRepository userRepository() {
 		UserRepository userRepo = new UserRepository();
-		userRepo.setUsers(Arrays.asList(user1(), user()));
+		userRepo.setUsers(Arrays.asList(user1(), user(), user3()));
 		return userRepo;
 	}
 

@@ -25,11 +25,11 @@ public class MainByJavaConfig {
 	private static void useBean(AnnotationConfigApplicationContext ctx) {
 		AuthenticationService authSvc =
 				ctx.getBean("authenticationService", AuthenticationService.class);
-		authSvc.authenticate("bkchoi", "1234");
+		authSvc.authenticate("jgkim", "1234");
 
 		PasswordChangeService pwChgSvc =
 				ctx.getBean(PasswordChangeService.class);
-		pwChgSvc.changePassword("bkchoi", "1234", "5678");
+		pwChgSvc.changePassword("jgkim", "1234", "5678");
 	}
 
 	private static void useMultipleClass() {
