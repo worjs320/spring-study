@@ -13,11 +13,13 @@ public class MainByEnvOfXml {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
 		ConfigurableEnvironment env = ctx.getEnvironment();
 		MutablePropertySources propSources = env.getPropertySources();
-		propSources.addLast(new ResourcePropertySource("classpath:/db.properties"));
+		propSources.addLast(new ResourcePropertySource("classpath:/jgkim.properties"));
 
 		String javaVersion = env.getProperty("java.version");
-		String dbUser = env.getProperty("db.user");
+		String dbUser = env.getProperty("jgkim.user");
+		String dbPw = env.getProperty("jgkim.password");
 		System.out.printf("java version is %s\n", javaVersion);
 		System.out.printf("dbUser is %s\n", dbUser);
+		System.out.printf("dbPassword is %s\n", dbPw);
 	}
 }

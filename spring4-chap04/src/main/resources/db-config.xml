@@ -20,5 +20,18 @@
 		</property>
 	</bean>
 
+	<context:property-placeholder location="classpath:/jgkim.properties, classpath:/app.properties" />
+
+	<bean id="jgkimConnProvider" class="net.madvirus.spring4.chap04.JgkimJdbcConnectionProvider"
+		  init-method="init">
+		<property name="driver" value="${jgkim.driver}" />
+		<property name="url" value="${jgkim.jdbcUrl}" />
+		<property name="user" value="${jgkim.user}" />
+		<property name="password">
+			<value>${jgkim.password}</value>
+		</property>
+	</bean>
+
+
 </beans>
 

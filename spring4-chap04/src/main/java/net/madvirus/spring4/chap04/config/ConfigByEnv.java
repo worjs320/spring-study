@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 
 @Configuration
-@PropertySources(@PropertySource("classpath:/db.properties"))
+@PropertySources(@PropertySource("classpath:/jgkim.properties"))
 public class ConfigByEnv {
 
 	@Autowired
@@ -20,10 +20,10 @@ public class ConfigByEnv {
 	@Bean(initMethod = "init")
 	public ConnectionProvider connectionProvider() {
 		JdbcConnectionProvider connectionProvider = new JdbcConnectionProvider();
-		connectionProvider.setDriver(env.getProperty("db.driver"));
-		connectionProvider.setUrl(env.getProperty("db.jdbcUrl"));
-		connectionProvider.setUser(env.getProperty("db.user"));
-		connectionProvider.setPassword(env.getProperty("db.password"));
+		connectionProvider.setDriver(env.getProperty("jgkim.driver"));
+		connectionProvider.setUrl(env.getProperty("jgkim.jdbcUrl"));
+		connectionProvider.setUser(env.getProperty("jgkim.user"));
+		connectionProvider.setPassword(env.getProperty("jgkim.password"));
 		return connectionProvider;
 	}
 }

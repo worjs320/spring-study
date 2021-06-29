@@ -17,7 +17,7 @@ public class MainByEnvOfJava {
 
 		ConfigurableEnvironment env = ctx.getEnvironment();
 		String javaVersion = env.getProperty("java.version");
-		String dbUser = env.getProperty("db.user");
+		String dbUser = env.getProperty("jgkim.user");
 		System.out.printf("java version is %s\n", javaVersion);
 		System.out.printf("dbUser is %s\n", dbUser);
 
