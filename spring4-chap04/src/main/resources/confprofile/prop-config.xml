@@ -9,7 +9,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:property-placeholder
-		location="classpath:/db.properties, classpath:/app.properties" />
+		location="classpath:/db.properties, classpath:/app.properties, classpath:/jgkim.properties" />
 
 </beans>
 

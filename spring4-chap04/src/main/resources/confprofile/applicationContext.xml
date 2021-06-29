@@ -30,9 +30,21 @@
 
 	<beans profile="prod">
 		<bean id="connProvider" class="net.madvirus.spring4.chap04.JndiConnectionProvider">
-			<property name="jndiName" value="java:/comp/env/jdbc/db" />
+			<property name="jndiName" value="java:/comp/env/jdbc/db/prodtestttttttt" />
 		</bean>
 	</beans>
 
+
+	<beans profile="jgkimDev">
+		<context:property-placeholder location="classpath:/jgkim.properties" />
+		<bean id="jgkimConnProvider" class="net.madvirus.spring4.chap04.JgkimJdbcConnectionProvider">
+			<property name="driver" value="${jgkim.driver}" />
+			<property name="url" value="${jgkim.jdbcUrl}" />
+			<property name="user" value="${jgkim.user}" />
+			<property name="password">
+				<value>jgkimDevPw</value>
+			</property>
+		</bean>
+	</beans>
 </beans>
 

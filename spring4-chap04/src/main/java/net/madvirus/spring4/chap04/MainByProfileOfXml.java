@@ -12,12 +12,13 @@ public class MainByProfileOfXml {
 	private static void useBeansProfileXml() {
 		System.out.println("===== <beans> profile을 이용한 설정 ==== ");
 		GenericXmlApplicationContext context = new GenericXmlApplicationContext();
-		context.getEnvironment().setActiveProfiles("prod");
+		context.getEnvironment().setActiveProfiles("jgkimDev");
 		context.load(
 				"classpath:/confprofile/prop-config.xml",
 				"classpath:/confprofile/app-config.xml",
 				"classpath:/confprofile/datasource-dev.xml",
-				"classpath:/confprofile/datasource-prod.xml"
+				"classpath:/confprofile/datasource-prod.xml",
+				"classpath:/confprofile/datasource-jgkim-dev.xml"
 				);
 		context.refresh();
 
