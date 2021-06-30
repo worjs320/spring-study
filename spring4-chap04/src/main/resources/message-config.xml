@@ -10,6 +10,7 @@
 		<property name="basenames">
 			<list>
 				<value>message.greeting</value>
+				<value>message.jgkim</value>
 			</list>
 		</property>
 		<property name="defaultEncoding" value="UTF-8" />

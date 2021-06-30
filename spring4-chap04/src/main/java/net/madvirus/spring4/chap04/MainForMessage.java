@@ -15,7 +15,13 @@ public class MainForMessage {
 
 		System.out.println(ctx.getMessage("hello", null, Locale.ENGLISH));
 		System.out.println(ctx.getMessage("welcome", new String[] { "madvirus" }, Locale.ENGLISH));
-		
+
+		System.out.println(ctx.getMessage("jgkim", null, Locale.ENGLISH));
+		System.out.println(ctx.getMessage("jgkimArgs", new String[] { "barak", "stop" }, Locale.ENGLISH));
+
+		System.out.println(ctx.getMessage("jgkim", null, Locale.getDefault()));
+		System.out.println(ctx.getMessage("jgkimArgs", new String[] { "jgkim", "발악", "그만" }, Locale.getDefault()));
+
 		ctx.close();
 	}
 }
