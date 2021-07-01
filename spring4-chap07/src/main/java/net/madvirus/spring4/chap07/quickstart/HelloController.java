@@ -17,6 +17,13 @@ public class HelloController {
 		model.addAttribute("greeting", "안녕하세요");
 		return "hello";
 	}
+
+	@RequestMapping("/jgkim.do")
+	public String jgkim(Model model) {
+		model.addAttribute("name", "jgkim");
+		model.addAttribute("company", "sgt");
+		return "jgkim";
+	}
 	
 	@RequestMapping("/hello-raw.do")
 	public void hello(HttpServletResponse response) throws IOException {
