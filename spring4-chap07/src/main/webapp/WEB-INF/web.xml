@@ -75,6 +75,22 @@ org.springframework.web.context.support.AnnotationConfigWebApplicationContext
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>jgkim-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				/WEB-INF/jgkim-mvc.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>jgkim-dispatcher</servlet-name>
+		<url-pattern>*.jgkim</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
