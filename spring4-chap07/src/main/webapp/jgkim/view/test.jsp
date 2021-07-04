@@ -15,5 +15,7 @@
 ${name} <br>
 <%}%>
 age: ${age}
+<br>
+pathValue: ${pathValue}
 </body>
 </html>
