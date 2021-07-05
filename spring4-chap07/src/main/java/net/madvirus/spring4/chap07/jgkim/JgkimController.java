@@ -24,4 +24,14 @@ public class JgkimController {
         model.addAttribute("paramValue", id);
         return "test";
     }
+
+    @RequestMapping(value = "/userForm.jgkim", method = RequestMethod.GET)
+    public String userForm() {
+        return "userForm";
+    }
+
+    @RequestMapping(value = "/register.jgkim", method = RequestMethod.POST)
+    public String register(UserTemplate userTemplate) {
+        return "registered";
+    }
 }
