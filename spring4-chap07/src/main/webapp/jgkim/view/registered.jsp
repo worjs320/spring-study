@@ -14,19 +14,19 @@
 <table border="1">
     <tr>
         <td>id</td>
-        <td>${userTemplate.id} </td>
+        <td>${test.id} </td>
     </tr>
     <tr>
         <td>name</td>
-        <td>${userTemplate.name} </td>
+        <td>${test.name} </td>
     </tr>
     <tr>
         <td>email</td>
-        <td>${userTemplate.email} </td>
+        <td>${test.email} </td>
     </tr>
     <tr>
         <td>password</td>
-        <td>${userTemplate.password} </td>
+        <td>${test.password} </td>
     </tr>
 </table>
 </body>
