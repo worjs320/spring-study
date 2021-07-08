@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class JgkimController {
     @RequestMapping("/test.jgkim")
@@ -30,5 +33,14 @@ public class JgkimController {
     @RequestMapping(value = "/register.jgkim", method = RequestMethod.POST)
     public String register(@ModelAttribute("test") UserTemplate userTemplate) {
         return "registered";
+    }
+
+    @ModelAttribute("listModel")
+    public List<String> numberList() {
+        List<String> testList = new ArrayList<>();
+        testList.add("하나");
+        testList.add("둘");
+        testList.add("셋");
+        return testList;
     }
 }
