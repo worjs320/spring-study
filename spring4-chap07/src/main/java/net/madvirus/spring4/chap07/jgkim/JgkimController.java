@@ -43,4 +43,10 @@ public class JgkimController {
         testList.add("셋");
         return testList;
     }
+
+    @RequestMapping(value = "/modelAttribute.jgkim", method = RequestMethod.GET)
+    public String modelAttribute(Model model, @ModelAttribute("listModel") List<String> modelAttributeList) {
+        model.addAttribute("modelAttributeList", modelAttributeList);
+        return "modelAttribute";
+    }
 }
