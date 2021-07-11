@@ -4,8 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class JgkimController {
@@ -48,5 +50,14 @@ public class JgkimController {
     public String modelAttribute(Model model, @ModelAttribute("listModel") List<String> modelAttributeList) {
         model.addAttribute("modelAttributeList", modelAttributeList);
         return "modelAttribute";
+    }
+
+    @RequestMapping(value = "/header.jgkim", method = RequestMethod.GET)
+    public String header(@RequestHeader Map<String, Object> requestHeader,
+                         @CookieValue(value = "auth", defaultValue = "default cookie") String cookieAuth,
+                         Model model) {
+        model.addAttribute("header", requestHeader);
+        model.addAttribute("cookieAuth", cookieAuth);
+        return "header";
     }
 }
