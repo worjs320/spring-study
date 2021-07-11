@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -59,5 +60,18 @@ public class JgkimController {
         model.addAttribute("header", requestHeader);
         model.addAttribute("cookieAuth", cookieAuth);
         return "header";
+    }
+
+    @RequestMapping(value = "/prev_redirect.jgkim", method = RequestMethod.GET)
+    public String prevRedirect() {
+        return "prev_redirect";
+    }
+
+    @RequestMapping(value = "/redirect.jgkim", method = RequestMethod.GET)
+    public String redirect(@RequestParam(value = "cookieValue", defaultValue = "default cookie") String cookieValue,
+                           HttpServletResponse response) {
+        Cookie cookie = new Cookie("test", cookieValue);
+        response.addCookie(cookie);
+        return "redirect:/header.jgkim";
     }
 }
