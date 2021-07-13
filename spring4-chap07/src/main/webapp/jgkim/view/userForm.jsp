@@ -1,3 +1,5 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -11,12 +13,15 @@
     <title>User Form</title>
 </head>
 <body>
-    <form method="post" action="/register.jgkim">
-        <input type="text" name="id"/>
-        <input type="text" name="name"/>
-        <input type="text" name="email"/>
-        <input type="password" name="password"/>
-        <input type="submit"/>
-    </form>
+<%--<spring:hasBindErrors name="userTemplate" />--%>
+<form:form commandName="userTemplate" method="post" action="/register.jgkim">
+<%--<form method="post" action="/register.jgkim">--%>
+    id: <input type="text" name="id"/> <form:errors path="id"/> <br>
+    name: <input type="text" name="name"/> <br>
+    email: <input type="text" name="email"/> <br>
+    password: <input type="password" name="password"/> <form:errors path="password"/> <br>
+    <input type="submit"/>
+</form:form>
+<%--</form>--%>
 </body>
 </html>

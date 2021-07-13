@@ -2,10 +2,14 @@ package net.madvirus.spring4.chap07.jgkim;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +37,13 @@ public class JgkimController {
         return "userForm";
     }
 
+    private static final String USER_FORM = "userForm";
     @RequestMapping(value = "/register.jgkim", method = RequestMethod.POST)
-    public String register(@ModelAttribute("test") UserTemplate userTemplate) {
+    public String register(@ModelAttribute("userTemplate") @Valid UserTemplate userTemplate, BindingResult bindingResult, Errors errors) {
+        new UserValidator().validate(userTemplate, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return USER_FORM;
+        }
         return "registered";
     }
 
