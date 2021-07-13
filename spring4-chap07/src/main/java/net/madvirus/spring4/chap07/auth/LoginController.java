@@ -30,7 +30,7 @@ public class LoginController {
 			return LOGIN_FORM;
 		}
 		try {
-			Auth auth = authenticator.authenticate(loginCommand.getEmail(), loginCommand.getPassword());
+			Auth auth = authenticator.authenticate(loginCommand.getEmail(), loginCommand.getPassword(), loginCommand.getName());
 			HttpSession session = request.getSession();
 			session.setAttribute("auth", auth);
 			return "redirect:/index.jsp";

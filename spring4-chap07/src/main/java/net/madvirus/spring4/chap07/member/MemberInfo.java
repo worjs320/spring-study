@@ -42,6 +42,10 @@ public class MemberInfo {
 		return password.equals(inputPassword);
 	}
 
+	public boolean matchName(String inputName) {
+		return name.equals(inputName);
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

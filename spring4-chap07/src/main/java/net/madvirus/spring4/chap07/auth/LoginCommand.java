@@ -4,6 +4,7 @@ public class LoginCommand {
 
 	private String email;
 	private String password;
+	private String name;
 
 	public String getEmail() {
 		return email;
@@ -21,4 +22,11 @@ public class LoginCommand {
 		this.password = password;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

@@ -14,6 +14,10 @@
 <label for="password">암호</label>: 
 <input type="password" name="password" id="password">
 <form:errors path="password"/> <br>
+
+<label for="name">이름</label>:
+<input type="text" name="name" id="name">
+<form:errors path="name"/> <br>
 <br/>
 
 <input type="submit" value="로그인">
