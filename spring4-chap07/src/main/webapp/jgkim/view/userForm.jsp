@@ -13,15 +13,21 @@
     <title>User Form</title>
 </head>
 <body>
-<%--<spring:hasBindErrors name="userTemplate" />--%>
 <form:form commandName="userTemplate" method="post" action="/register.jgkim">
-<%--<form method="post" action="/register.jgkim">--%>
     id: <input type="text" name="id"/> <form:errors path="id"/> <br>
     name: <input type="text" name="name"/> <br>
     email: <input type="text" name="email"/> <br>
     password: <input type="password" name="password"/> <form:errors path="password"/> <br>
     <input type="submit"/>
 </form:form>
-<%--</form>--%>
+
+<spring:hasBindErrors name="userTemplate" />
+    <form method="post" action="/register.jgkim">
+    id: <input type="text" name="id"/> <form:errors path="userTemplate.id"/> <br>
+    name: <input type="text" name="name"/> <br>
+    email: <input type="text" name="email"/> <br>
+    password: <input type="password" name="password"/> <form:errors path="userTemplate.password"/> <br>
+    <input type="submit"/>
+</form>
 </body>
 </html>
