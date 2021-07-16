@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<mvc:annotation-driven />
+	<mvc:annotation-driven validator="validator"/>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -27,4 +27,6 @@
 		</property>
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
+
+	<bean id="validator" class="net.madvirus.spring4.chap07.jgkim.GlobalValidator"/>
 </beans>

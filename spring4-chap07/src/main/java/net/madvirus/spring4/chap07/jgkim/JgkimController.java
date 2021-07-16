@@ -55,10 +55,10 @@ public class JgkimController {
         return "registered";
     }
 
-    @InitBinder
-    protected void initBinder(WebDataBinder binder){
-        binder.addValidators(new UserValidator());
-    }
+//    @InitBinder
+//    protected void initBinder(WebDataBinder binder){
+//        binder.addValidators(new UserValidator());
+//    }
 
     @ModelAttribute("listModel")
     public List<String> numberList() {
