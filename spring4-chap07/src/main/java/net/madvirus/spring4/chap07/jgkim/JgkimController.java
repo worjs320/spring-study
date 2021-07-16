@@ -38,13 +38,26 @@ public class JgkimController {
     }
 
     private static final String USER_FORM = "userForm";
+//    @RequestMapping(value = "/register.jgkim", method = RequestMethod.POST)
+//    public String register(@ModelAttribute("userTemplate") @Valid UserTemplate userTemplate, BindingResult bindingResult, Errors errors) {
+//        new UserValidator().validate(userTemplate, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return USER_FORM;
+//        }
+//        return "registered";
+//    }
+
     @RequestMapping(value = "/register.jgkim", method = RequestMethod.POST)
-    public String register(@ModelAttribute("userTemplate") @Valid UserTemplate userTemplate, BindingResult bindingResult, Errors errors) {
-        new UserValidator().validate(userTemplate, bindingResult);
-        if (bindingResult.hasErrors()) {
+    public String register(@Valid UserTemplate userTemplate, Errors errors) {
+        if (errors.hasErrors()) {
             return USER_FORM;
         }
         return "registered";
+    }
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder){
+        binder.addValidators(new UserValidator());
     }
 
     @ModelAttribute("listModel")
