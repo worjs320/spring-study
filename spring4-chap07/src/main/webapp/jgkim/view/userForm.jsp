@@ -15,8 +15,8 @@
 <body>
 <form:form commandName="userTemplate" method="post" action="/register.jgkim">
     id: <input type="text" name="id"/> <form:errors path="id"/> <br>
-    name: <input type="text" name="name"/> <br>
-    email: <input type="text" name="email"/> <br>
+    name: <input type="text" name="name"/> <form:errors path="name"/> <br>
+    email: <input type="text" name="email"/> <form:errors path="email"/> <br>
     password: <input type="password" name="password"/> <form:errors path="password"/> <br>
     <input type="submit"/>
 </form:form>
