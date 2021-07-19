@@ -18,5 +18,6 @@ public class UserTemplate {
     private String name;
 
     @Email
+    @NotEmpty
     private String email;
 }
