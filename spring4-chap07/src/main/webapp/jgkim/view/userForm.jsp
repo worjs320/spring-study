@@ -18,6 +18,8 @@
     name: <input type="text" name="name"/> <form:errors path="name"/> <br>
     email: <input type="text" name="email"/> <form:errors path="email"/> <br>
     password: <input type="password" name="password"/> <form:errors path="password"/> <br>
+    age: <input type="text" name="age"/> <form:errors path="age"/> <br>
+    jgkim: <input type="text" name="jgkim"/> <form:errors path="jgkim"/> <br>
     <input type="submit"/>
 </form:form>
 
