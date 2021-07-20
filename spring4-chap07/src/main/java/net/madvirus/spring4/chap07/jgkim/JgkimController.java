@@ -1,5 +1,6 @@
 package net.madvirus.spring4.chap07.jgkim;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +56,12 @@ public class JgkimController {
             return USER_FORM;
         }
         return "registered";
+    }
+
+    @InitBinder
+    protected void initBinder(WebDataBinder webDataBinder) {
+        CustomDateEditor customDateEditor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
+        webDataBinder.registerCustomEditor(Date.class, customDateEditor);
     }
 
 //    @InitBinder

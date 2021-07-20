@@ -20,6 +20,7 @@
     password: <input type="password" name="password"/> <form:errors path="password"/> <br>
     age: <input type="text" name="age"/> <form:errors path="age"/> <br>
     jgkim: <input type="text" name="jgkim"/> <form:errors path="jgkim"/> <br>
+    date: <input type="text" name="date"/> <form:errors path="date"/> <br>
     <input type="submit"/>
 </form:form>
 

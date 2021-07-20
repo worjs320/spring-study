@@ -9,6 +9,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -33,4 +34,6 @@ public class UserTemplate {
 
     @Pattern(regexp = "(?i)jgkim")
     private String jgkim;
+
+    private Date date;
 }
