@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -35,5 +36,6 @@ public class UserTemplate {
     @Pattern(regexp = "(?i)jgkim")
     private String jgkim;
 
+    @DateTimeFormat(pattern = "yyyyMMdd")
     private Date date;
 }

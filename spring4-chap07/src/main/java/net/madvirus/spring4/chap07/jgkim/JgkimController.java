@@ -58,11 +58,11 @@ public class JgkimController {
         return "registered";
     }
 
-    @InitBinder
-    protected void initBinder(WebDataBinder webDataBinder) {
-        CustomDateEditor customDateEditor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
-        webDataBinder.registerCustomEditor(Date.class, customDateEditor);
-    }
+//    @InitBinder
+//    protected void initBinder(WebDataBinder webDataBinder) {
+//        CustomDateEditor customDateEditor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
+//        webDataBinder.registerCustomEditor(Date.class, customDateEditor);
+//    }
 
 //    @InitBinder
 //    protected void initBinder(WebDataBinder binder){
