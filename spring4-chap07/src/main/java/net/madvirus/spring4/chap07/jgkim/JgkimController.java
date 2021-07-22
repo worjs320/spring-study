@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@SessionAttributes("userTemplate")
 public class JgkimController {
     @RequestMapping("/test.jgkim")
     public String jgkim(Model model) {
@@ -36,7 +38,14 @@ public class JgkimController {
     }
 
     @RequestMapping(value = "/userForm.jgkim", method = RequestMethod.GET)
-    public String userForm() {
+    public String userForm(Model model) {
+        model.addAttribute("userTemplate", new UserTemplate());
+        return "userForm";
+    }
+
+    @RequestMapping(value = "/deleteSession.jgkim", method = RequestMethod.GET)
+    public String deleteSession(SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
         return "userForm";
     }
 
@@ -51,7 +60,7 @@ public class JgkimController {
 //    }
 
     @RequestMapping(value = "/register.jgkim", method = RequestMethod.POST)
-    public String register(@Valid UserTemplate userTemplate, Errors errors) {
+    public String register(@Valid @ModelAttribute("userTemplate") UserTemplate userTemplate, Errors errors) {
         if (errors.hasErrors()) {
             return USER_FORM;
         }

@@ -23,6 +23,8 @@
     date: <input type="text" name="date"/> <form:errors path="date"/> <br>
     <input type="submit"/>
 </form:form>
+<a href="/deleteSession.jgkim">세션 삭제</a>
+세션 값:<%=session.getAttribute("userTemplate")%>
 
 <spring:hasBindErrors name="userTemplate" />
     <form method="post" action="/register.jgkim">
