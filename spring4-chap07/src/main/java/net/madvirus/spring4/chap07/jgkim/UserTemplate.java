@@ -15,13 +15,13 @@ import java.util.Date;
 @Getter
 @Setter
 public class UserTemplate {
-    @NotEmpty
+    @NotEmpty(message = "ID 발악 그만")
     private String id;
 
     @NotEmpty
     private String password;
 
-    @NotEmpty
+    @NotEmpty(message = "NAME 발악 그만")
     private String name;
 
     @Email

@@ -13,7 +13,7 @@
     <title>User Form</title>
 </head>
 <body>
-<form:form commandName="userTemplate" method="post" action="/register.jgkim">
+<form:form method="post" action="/register.jgkim" modelAttribute="userTemplate">
     id: <input type="text" name="id"/> <form:errors path="id"/> <br>
     name: <input type="text" name="name"/> <form:errors path="name"/> <br>
     email: <input type="text" name="email"/> <form:errors path="email"/> <br>
