@@ -114,4 +114,20 @@ public class JgkimController {
         response.addCookie(cookie);
         return "redirect:/header.jgkim";
     }
+
+    @RequestMapping(value = "/exception_view.jgkim", method = RequestMethod.GET)
+    public String exceptionView() {
+        return "exception_view";
+    }
+
+    @RequestMapping(value = "/exception.jgkim", method = RequestMethod.POST)
+    public String exception(Model model, @RequestParam("num1") int num1, @RequestParam int num2) {
+        model.addAttribute("result", num1/num2);
+        return "exception_view";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String ExceptionHandler() {
+        return "error";
+    }
 }
