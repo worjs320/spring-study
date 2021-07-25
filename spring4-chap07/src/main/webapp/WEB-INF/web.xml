@@ -81,7 +81,13 @@ org.springframework.web.context.support.AnnotationConfigWebApplicationContext
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/jgkim-mvc.xml
+				net.madvirus.spring4.chap07.jgkim.MvcConfig
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>
+				org.springframework.web.context.support.AnnotationConfigWebApplicationContext
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
