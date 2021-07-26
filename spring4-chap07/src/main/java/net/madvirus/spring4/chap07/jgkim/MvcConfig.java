@@ -32,4 +32,8 @@ public class MvcConfig {
         return source;
     }
 
+    @Bean
+    public CommonException commonException() {
+        return new CommonException();
+    }
 }

@@ -125,9 +125,4 @@ public class JgkimController {
         model.addAttribute("result", num1/num2);
         return "exception_view";
     }
-
-    @ExceptionHandler(Exception.class)
-    public String ExceptionHandler() {
-        return "error";
-    }
 }
