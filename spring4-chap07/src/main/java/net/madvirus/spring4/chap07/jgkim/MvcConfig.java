@@ -4,11 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-public class MvcConfig {
+public class MvcConfig implements WebMvcConfigurer {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -35,5 +37,15 @@ public class MvcConfig {
     @Bean
     public CommonException commonException() {
         return new CommonException();
+    }
+
+    @Bean
+    public HandlerInterceptorTest handlerInterceptorTest() {
+        return new HandlerInterceptorTest();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry interceptorRegistry) {
+        interceptorRegistry.addInterceptor(handlerInterceptorTest()).addPathPatterns("/**");
     }
 }
