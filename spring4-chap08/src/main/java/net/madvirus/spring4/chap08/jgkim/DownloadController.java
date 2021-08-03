@@ -58,4 +58,15 @@ public class DownloadController implements ApplicationContextAware {
         return "personXlsxView";
     }
 
+    @RequestMapping(value = "/file/personPdf")
+    public String personPdf(Model model) {
+        List<PersonTemplate> personList = Arrays.asList(
+                new PersonTemplate("발악", "남자", 19, "010-1234-1234"),
+                new PersonTemplate("발악2", "여자", 20, "010-1234-5678"),
+                new PersonTemplate("발악3", "중성", 100, "010-0000-0000")
+        );
+        model.addAttribute("personList", personList);
+        return "personPdfView";
+    }
+
 }
