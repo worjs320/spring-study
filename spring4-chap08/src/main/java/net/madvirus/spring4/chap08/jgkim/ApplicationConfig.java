@@ -4,9 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -14,8 +16,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("net.madvirus.spring4.chap08.jgkim")
-public class ApplicationConfig {
-
+public class ApplicationConfig implements WebMvcConfigurer {
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -25,7 +26,7 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public ViewResolver beanNameViewResolver(){
+    public ViewResolver beanNameViewResolver() {
         BeanNameViewResolver resolver = new BeanNameViewResolver();
         resolver.setOrder(1);
         return resolver;
@@ -41,7 +42,7 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public SessionLocaleResolver sessionLocaleResolver() {
+    public SessionLocaleResolver localeResolver() {
         return new SessionLocaleResolver();
     }
 
@@ -53,5 +54,17 @@ public class ApplicationConfig {
     @Bean
     public DownloadView downloadView() {
         return new DownloadView();
+    }
+
+    @Bean
+    LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
+        interceptor.setParamName("lang");
+        return interceptor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
     }
 }

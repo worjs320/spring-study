@@ -30,10 +30,10 @@ public class LanguageController {
         return "message_view";
     }
 
-    @RequestMapping(value = "/changeLocale/{lang}")
-    public String changeLocale(@PathVariable("lang") String lang, HttpServletRequest request, HttpServletResponse response) {
-        Locale locale = new Locale(lang);
-        localeResolver.setLocale(request, response, locale);
-        return "message_view";
-    }
+//    @RequestMapping(value = "/changeLocale/{lang}")
+//    public String changeLocale(@PathVariable("lang") String lang, HttpServletRequest request, HttpServletResponse response) {
+//        Locale locale = new Locale(lang);
+//        localeResolver.setLocale(request, response, locale);
+//        return "message_view";
+//    }
 }
