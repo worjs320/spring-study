@@ -19,7 +19,7 @@ public class JgkimController {
         return body;
     }
 
-    @RequestMapping(value = "/person_list.xml")
+    @RequestMapping(value = "/person_list.xml", method = RequestMethod.GET)
     @ResponseBody
     public XmlPersonTemplate listXml() {
         return getPersonList();
@@ -32,4 +32,16 @@ public class JgkimController {
         );
         return new XmlPersonTemplate(persons);
     }
+
+    @RequestMapping(value = "/xml_test", method = RequestMethod.GET)
+    public String requestPersonXmlView() {
+        return "xml_test";
+    }
+
+    @RequestMapping(value = "/person_list.xml", method = RequestMethod.POST)
+    @ResponseBody
+    public XmlPersonTemplate requestListXml(@RequestBody XmlPersonTemplate xmlPersonTemplate) {
+        return xmlPersonTemplate;
+    }
+
 }
