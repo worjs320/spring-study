@@ -71,7 +71,8 @@ public class JgkimController {
          if(!multipartFile.isEmpty()) {
              byte[] bytes = multipartFile.getBytes();
              File file = new File(uploadPath, multipartFile.getOriginalFilename());
-             FileCopyUtils.copy(bytes, file);
+//             FileCopyUtils.copy(bytes, file);
+             multipartFile.transferTo(file);
              model.addAttribute("fileName", multipartFile.getOriginalFilename());
              model.addAttribute("uploadPath", uploadPath);
              return "file/file_upload_success";
