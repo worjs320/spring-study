@@ -44,4 +44,13 @@ public class JgkimController {
         return xmlPersonTemplate;
     }
 
+    @RequestMapping(value = "/person_list.json", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonPersonTemplate jsonPersonTemplate() {
+         List<PersonTemplate> persons = Arrays.asList(
+                new PersonTemplate("발악", "이름", 19, "남자"),
+                new PersonTemplate("발악2", "이름2", 40, "여자")
+        );;
+        return new JsonPersonTemplate(persons);
+    }
 }
