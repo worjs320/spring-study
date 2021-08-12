@@ -1,8 +1,13 @@
 package net.madvirus.spring4.chap09.jgkim;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,7 +55,28 @@ public class JgkimController {
          List<PersonTemplate> persons = Arrays.asList(
                 new PersonTemplate("발악", "이름", 19, "남자"),
                 new PersonTemplate("발악2", "이름2", 40, "여자")
-        );;
+        );
         return new JsonPersonTemplate(persons);
+    }
+
+    @RequestMapping(value = "/file/upload_form", method = RequestMethod.GET)
+    public String fileUploadForm() {
+        return "file/file_upload";
+    }
+
+    private final String uploadPath = System.getProperty("java.io.tmpdir");
+
+    @RequestMapping(value = "/file/multipart", method = RequestMethod.POST)
+    public String uploadByMultipartFile(@RequestParam("file") MultipartFile multipartFile, Model model) throws IOException {
+         if(!multipartFile.isEmpty()) {
+             byte[] bytes = multipartFile.getBytes();
+             File file = new File(uploadPath, multipartFile.getOriginalFilename());
+             FileCopyUtils.copy(bytes, file);
+             model.addAttribute("fileName", multipartFile.getOriginalFilename());
+             model.addAttribute("uploadPath", uploadPath);
+             return "file/file_upload_success";
+         }
+
+         return "file/file_upload_fail";
     }
 }
