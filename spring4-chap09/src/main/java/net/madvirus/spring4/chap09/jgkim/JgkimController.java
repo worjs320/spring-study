@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,8 +72,23 @@ public class JgkimController {
          if(!multipartFile.isEmpty()) {
              byte[] bytes = multipartFile.getBytes();
              File file = new File(uploadPath, multipartFile.getOriginalFilename());
-//             FileCopyUtils.copy(bytes, file);
              multipartFile.transferTo(file);
+             model.addAttribute("title", "MultipartFile");
+             model.addAttribute("fileName", multipartFile.getOriginalFilename());
+             model.addAttribute("uploadPath", uploadPath);
+             return "file/file_upload_success";
+         }
+
+         return "file/file_upload_fail";
+    }
+
+    @PostMapping("/file/multipartHttpServletRequest")
+    public String uploadByMultipartHttpServletRequest(MultipartHttpServletRequest request, Model model) throws IOException {
+        MultipartFile multipartFile = request.getFile("file");
+         if(!multipartFile.isEmpty()) {
+             File file = new File(uploadPath, multipartFile.getOriginalFilename());
+             multipartFile.transferTo(file);
+             model.addAttribute("title", "MultipartHttpServletRequest");
              model.addAttribute("fileName", multipartFile.getOriginalFilename());
              model.addAttribute("uploadPath", uploadPath);
              return "file/file_upload_success";

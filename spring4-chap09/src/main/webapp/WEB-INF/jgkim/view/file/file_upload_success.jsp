@@ -11,8 +11,9 @@
     <title>File Upload Success</title>
 </head>
 <body>
-    File Upload Success!!!
-    파일명 : ${fileName}
+    File Upload Success!!! <br>
+    업로드 방식 : ${title} <br>
+    파일명 : ${fileName} <br>
     업로드 경로 : ${uploadPath}
 </body>
 </html>

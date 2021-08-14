@@ -11,7 +11,7 @@
     <title>File Upload</title>
 </head>
 <body>
-<form action="/jgkim/file/multipart" method="post" enctype="multipart/form-data">
+<form action="/jgkim//file/multipartHttpServletRequest" method="post" enctype="multipart/form-data">
     파일 : <input type="file" name="file"/>
     <input type="submit" value="전송"/>
 </form>
