@@ -9,4 +9,9 @@ public class JgkimController {
     public String requestPersonXmlView() {
         return "test";
     }
+
+    @GetMapping("echoHandler")
+    public String echoHandler() {
+        return "echo_handler";
+    }
 }

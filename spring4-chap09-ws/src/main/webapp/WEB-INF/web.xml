@@ -19,6 +19,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				net.madvirus.spring4.chap09.jgkim.ApplicationConfig
+				net.madvirus.spring4.chap09.jgkim.WsConfig
 			</param-value>
 		</init-param>
 		<init-param>
