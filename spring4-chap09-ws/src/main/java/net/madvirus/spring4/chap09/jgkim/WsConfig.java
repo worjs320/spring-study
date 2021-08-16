@@ -12,10 +12,16 @@ public class WsConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(echoHandler(), "/echoHandlerSocket");
+        registry.addHandler(chatSocketHandler(), "/chatSocketHandle");
     }
 
     @Bean
     public EchoHandler echoHandler(){
         return new EchoHandler();
+    }
+
+    @Bean
+    public ChatSocketHandler chatSocketHandler(){
+        return new ChatSocketHandler();
     }
 }

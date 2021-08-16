@@ -10,8 +10,13 @@ public class JgkimController {
         return "test";
     }
 
-    @GetMapping("echoHandler")
+    @GetMapping("/echoHandler")
     public String echoHandler() {
         return "echo_handler";
+    }
+
+    @GetMapping("/chat_view")
+    public String chat_view() {
+        return "chat_view";
     }
 }
