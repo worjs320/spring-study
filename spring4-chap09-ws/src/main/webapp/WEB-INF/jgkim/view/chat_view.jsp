@@ -1,14 +1,17 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>채팅</title>
+<%--    <script src="/resources/js/sockjs-1.5.1.min.js"></script>--%>
+    <script src="<c:url value="/resources/js/sockjs-1.5.1.min.js"/>"></script>
     <script type="text/javascript">
         var wsocket;
 
         function connect() {
-            wsocket = new WebSocket("ws://localhost:8443/chatSocketHandle");
+            wsocket = new SockJS("http://localhost:8443/chatSocketHandle");
             wsocket.onopen = onOpen;
             wsocket.onmessage = onMessage;
             wsocket.onclose = onClose;

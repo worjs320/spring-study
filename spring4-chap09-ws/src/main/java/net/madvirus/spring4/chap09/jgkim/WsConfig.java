@@ -11,8 +11,8 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 public class WsConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(echoHandler(), "/echoHandlerSocket");
-        registry.addHandler(chatSocketHandler(), "/chatSocketHandle");
+        registry.addHandler(echoHandler(), "/echoHandlerSocket").withSockJS();
+        registry.addHandler(chatSocketHandler(), "/chatSocketHandle").withSockJS();
     }
 
     @Bean
