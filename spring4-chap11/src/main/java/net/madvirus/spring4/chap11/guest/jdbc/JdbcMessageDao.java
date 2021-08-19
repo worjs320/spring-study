@@ -107,7 +107,7 @@ public class JdbcMessageDao implements MessageDao {
 			if (insertedCount > 0) {
 				stmt = conn.createStatement();
 				rs = stmt
-						.executeQuery("select last_insert_id() from guestmessage");
+						.executeQuery("select SCOPE_IDENTITY() from guestmessage");
 				if (rs.next()) {
 					return rs.getInt(1);
 				}

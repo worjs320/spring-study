@@ -75,7 +75,7 @@ public class Main {
 		Message message = new Message();
 		message.setMessage("메시지");
 		message.setCreationTime(new Date());
-		message.setName("최범균");
+		message.setName("Barak");
 		int id = messageDao.insert(message);
 		System.out.printf("Message[%d]가 추가되었습니다.\n", id);
 
