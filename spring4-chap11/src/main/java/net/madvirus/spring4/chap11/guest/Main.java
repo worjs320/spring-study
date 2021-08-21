@@ -10,10 +10,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		useJdbc();
-		useJdbcTemplate();
-		useJdbcTemplate2();
-		useNamedJdbcTemplate();
-		useSimpleInsert();
+//		useJdbcTemplate();
+//		useJdbcTemplate2();
+//		useNamedJdbcTemplate();
+//		useSimpleInsert();
 	}
 
 	private static void useJdbcTemplate() {
@@ -51,12 +51,12 @@ public class Main {
 
 	private static void useJdbc() {
 		String configLocation = "classpath:applicationContext.xml";
-		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
-				configLocation);
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 
-		MessageDao messageDao = ctx.getBean("jdbcMessageDao",
-				MessageDao.class);
-		runMessageDao(messageDao);
+//		MessageDao messageDao = ctx.getBean("jdbcMessageDao", MessageDao.class);
+//		runMessageDao(messageDao);
+		PersonDao personDao = ctx.getBean("jdbcPersonDao", PersonDao.class);
+		runPersonDao(personDao);
 		ctx.close();
 	}
 
@@ -83,6 +83,25 @@ public class Main {
 		System.out.printf("전체 개수: %d\n", count);
 		List<Message> messages = messageDao.select(0, 10);
 		System.out.printf("읽어온 메시지 개수: %d\n", messages.size());
+	}
+
+	private static void runPersonDao(PersonDao personDao) {
+		Person person = new Person();
+		person.setName("Barak");
+		person.setGender("man");
+		person.setAge(22);
+		person.setBirth(new Date());
+		int id = personDao.insert(person);
+		System.out.printf("Person[%d]가 추가되었습니다.\n", id);
+
+		int count = personDao.counts();
+		System.out.printf("전체 개수: %d\n", count);
+		List<Person> persons = personDao.select(0, 3);
+		System.out.printf("읽어온 사용자 개수: %d\n", persons.size());
+
+		for (Person p : persons) {
+			System.out.println(p.getNum()+" || "+p.getName());
+		}
 	}
 
 }
