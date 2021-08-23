@@ -9,8 +9,8 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class Main {
 
 	public static void main(String[] args) {
-		useJdbc();
-//		useJdbcTemplate();
+//		useJdbc();
+		useJdbcTemplate();
 //		useJdbcTemplate2();
 //		useNamedJdbcTemplate();
 //		useSimpleInsert();
@@ -21,9 +21,10 @@ public class Main {
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
 				configLocation);
 
-		MessageDao messageDao = ctx.getBean("jdbcTemplateMessageDao",
-				MessageDao.class);
-		runMessageDao(messageDao);
+//		MessageDao messageDao = ctx.getBean("jdbcTemplateMessageDao", MessageDao.class);
+//		runMessageDao(messageDao);
+		PersonDao personDao = ctx.getBean("jdbcTemplatePersonDao", PersonDao.class);
+		runPersonDao(personDao);
 		ctx.close();
 	}
 
