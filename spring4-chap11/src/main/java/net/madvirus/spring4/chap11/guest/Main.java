@@ -10,8 +10,8 @@ public class Main {
 
 	public static void main(String[] args) {
 //		useJdbc();
-		useJdbcTemplate();
-//		useJdbcTemplate2();
+//		useJdbcTemplate();
+		useJdbcTemplate2();
 //		useNamedJdbcTemplate();
 //		useSimpleInsert();
 	}
@@ -33,10 +33,9 @@ public class Main {
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
 				configLocation);
-		
-		MessageDao messageDao = ctx.getBean("jdbcTemplateMessageDao2",
-				MessageDao.class);
-		runMessageDao(messageDao);
+
+		PersonDao personDao = ctx.getBean("jdbcTemplatePersonDao2", PersonDao.class);
+		runPersonDao(personDao);
 		ctx.close();
 	}
 	
@@ -97,7 +96,7 @@ public class Main {
 
 		int count = personDao.counts();
 		System.out.printf("전체 개수: %d\n", count);
-		List<Person> persons = personDao.select(0, 3);
+		List<Person> persons = personDao.select(2, 100);
 		System.out.printf("읽어온 사용자 개수: %d\n", persons.size());
 
 		for (Person p : persons) {
