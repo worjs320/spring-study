@@ -56,5 +56,10 @@
 		class="net.madvirus.spring4.chap11.guest.jdbc.SimpleInsertMessageDao">
 		<constructor-arg ref="dataSource" />
 	</bean>
+
+	<bean id="simpleInsertPersonDao"
+		class="net.madvirus.spring4.chap11.guest.jdbc.SimpleInsertPersonDao">
+		<constructor-arg ref="dataSource" />
+	</bean>
 </beans>
 
