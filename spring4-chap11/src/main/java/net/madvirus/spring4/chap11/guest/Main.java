@@ -11,8 +11,8 @@ public class Main {
 	public static void main(String[] args) {
 //		useJdbc();
 //		useJdbcTemplate();
-		useJdbcTemplate2();
-//		useNamedJdbcTemplate();
+//		useJdbcTemplate2();
+		useNamedJdbcTemplate();
 //		useSimpleInsert();
 	}
 
@@ -44,8 +44,11 @@ public class Main {
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
 				configLocation);
 
-		MessageDao messageDao = ctx.getBean("namedTemlateDao", MessageDao.class);
-		runMessageDao(messageDao);
+//		MessageDao messageDao = ctx.getBean("namedTemlateDao", MessageDao.class);
+//		runMessageDao(messageDao);
+		PersonDao personDao = ctx.getBean("namedTemplatePersonDao", PersonDao.class);
+		runPersonDao(personDao);
+		ctx.close();
 		ctx.close();
 	}
 
@@ -87,8 +90,8 @@ public class Main {
 
 	private static void runPersonDao(PersonDao personDao) {
 		Person person = new Person();
-		person.setName("Barak");
-		person.setGender("man");
+		person.setName("namedTemplatePersonDao");
+		person.setGender("w");
 		person.setAge(22);
 		person.setBirth(new Date());
 		int id = personDao.insert(person);
@@ -96,7 +99,7 @@ public class Main {
 
 		int count = personDao.counts();
 		System.out.printf("전체 개수: %d\n", count);
-		List<Person> persons = personDao.select(2, 100);
+		List<Person> persons = personDao.select(0, 100);
 		System.out.printf("읽어온 사용자 개수: %d\n", persons.size());
 
 		for (Person p : persons) {
