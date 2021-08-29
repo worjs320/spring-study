@@ -13,26 +13,30 @@ import org.springframework.jdbc.core.RowMapper;
 
 public class JdbcItemDao implements ItemDao {
 
-	private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-	public JdbcItemDao(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+    public JdbcItemDao(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
-	@Override
-	public Item findById(Integer itemId) {
-		return jdbcTemplate.queryForObject(
-				"select * from ITEM where ITEM_ID = ?",
-				new Object[] { itemId }, new RowMapper<Item>() {
-					@Override
-					public Item mapRow(ResultSet rs, int row)
-							throws SQLException {
-						Item item = new Item();
-						item.setId(rs.getInt("ITEM_ID"));
-						item.setPrice(rs.getInt("PRICE"));
-						return item;
-					}
-				});
-	}
+    @Override
+    public Item findById(Integer itemId) {
+        try {
+            return jdbcTemplate.queryForObject(
+                    "select * from ITEM where ITEM_ID = ?",
+                    new Object[]{itemId}, new RowMapper<Item>() {
+                        @Override
+                        public Item mapRow(ResultSet rs, int row)
+                                throws SQLException {
+                            Item item = new Item();
+                            item.setId(rs.getInt("ITEM_ID"));
+                            item.setPrice(rs.getInt("PRICE"));
+                            return item;
+                        }
+                    });
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 }

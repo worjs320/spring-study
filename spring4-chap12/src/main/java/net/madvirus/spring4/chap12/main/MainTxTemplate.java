@@ -14,7 +14,7 @@ public class MainTxTemplate {
 
 		PlaceOrderService orderService = ctx.getBean(PlaceOrderService.class);
 		PurchaseOrderRequest orderRequest = new PurchaseOrderRequest();
-		orderRequest.setItemId(1);
+		orderRequest.setItemId(2);
 		orderRequest.setAddress("주소");
 
 		PurchaseOrderResult orderResult = orderService.order(orderRequest);
