@@ -2,7 +2,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
@@ -46,13 +46,12 @@
 	<bean id="shopDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean">
 		<property name="uniqueResourceName" value="shopXaDs" />
 		<property name="xaDataSourceClassName"
-			value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+			value="org.h2.jdbcx.JdbcDataSource" />
 		<property name="xaProperties">
 			<props>
-				<prop key="user">spring4</prop>
-				<prop key="password">spring4</prop>
-				<prop key="url">jdbc:mysql://localhost/shop?characterEncoding=utf8</prop>
-				<prop key="pinGlobalTxToPhysicalConnection">true</prop>
+				<prop key="user">admin</prop>
+				<prop key="password">admin</prop>
+				<prop key="url">jdbc:h2:tcp://localhost/~/guestbook</prop>
 			</props>
 		</property>
 	</bean>
@@ -60,13 +59,12 @@
 	<bean id="payDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean">
 		<property name="uniqueResourceName" value="payXaDs" />
 		<property name="xaDataSourceClassName"
-			value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+			value="org.h2.jdbcx.JdbcDataSource" />
 		<property name="xaProperties">
 			<props>
-				<prop key="user">spring4</prop>
-				<prop key="password">spring4</prop>
-				<prop key="url">jdbc:mysql://localhost/shop?characterEncoding=utf8</prop>
-				<prop key="pinGlobalTxToPhysicalConnection">true</prop>
+				<prop key="user">admin</prop>
+				<prop key="password">admin</prop>
+				<prop key="url">jdbc:h2:tcp://localhost/~/guestbook2</prop>
 			</props>
 		</property>
 	</bean>
