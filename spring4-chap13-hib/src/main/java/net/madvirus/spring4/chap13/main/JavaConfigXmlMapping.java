@@ -16,8 +16,8 @@ import net.madvirus.spring4.chap13.store.service.PlaceOrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -31,13 +31,13 @@ public class JavaConfigXmlMapping {
 	public DataSource dataSource() {
 		ComboPooledDataSource ds = new ComboPooledDataSource();
 		try {
-			ds.setDriverClass("com.mysql.jdbc.Driver");
+			ds.setDriverClass("org.h2.Driver");
 		} catch (PropertyVetoException e) {
 			throw new RuntimeException(e);
 		}
 		ds.setJdbcUrl("jdbc:mysql://localhost/shop?characterEncoding=utf8");
-		ds.setUser("spring4");
-		ds.setPassword("spring4");
+		ds.setUser("admin");
+		ds.setPassword("admin");
 		return ds;
 	}
 
