@@ -35,7 +35,7 @@ public class JavaConfigXmlMapping {
 		} catch (PropertyVetoException e) {
 			throw new RuntimeException(e);
 		}
-		ds.setJdbcUrl("jdbc:mysql://localhost/shop?characterEncoding=utf8");
+		ds.setJdbcUrl("jdbc:h2:tcp://localhost/~/shop");
 		ds.setUser("admin");
 		ds.setPassword("admin");
 		return ds;
