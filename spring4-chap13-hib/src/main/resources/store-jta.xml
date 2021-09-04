@@ -48,13 +48,12 @@
 		<property name="minPoolSize" value="2" />
 		<property name="maxPoolSize" value="10" />
 		<property name="xaDataSourceClassName"
-			value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+			value="org.h2.jdbcx.JdbcDataSource" />
 		<property name="xaProperties">
 			<props>
-				<prop key="user">spring4</prop>
-				<prop key="password">spring4</prop>
-				<prop key="url">jdbc:mysql://localhost/shop?characterEncoding=utf8</prop>
-				<prop key="pinGlobalTxToPhysicalConnection">true</prop>
+				<prop key="user">admin</prop>
+				<prop key="password">admin</prop>
+				<prop key="url">jdbc:h2:tcp://localhost/~/guestbook</prop>
 			</props>
 		</property>
 	</bean>
@@ -64,13 +63,12 @@
 		<property name="minPoolSize" value="2" />
 		<property name="maxPoolSize" value="10" />
 		<property name="xaDataSourceClassName"
-			value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+			value="org.h2.jdbcx.JdbcDataSource" />
 		<property name="xaProperties">
 			<props>
-				<prop key="user">spring4</prop>
-				<prop key="password">spring4</prop>
-				<prop key="url">jdbc:mysql://localhost/shop?characterEncoding=utf8</prop>
-				<prop key="pinGlobalTxToPhysicalConnection">true</prop>
+				<prop key="user">admin</prop>
+				<prop key="password">admin</prop>
+				<prop key="url">jdbc:h2:tcp://localhost/~/shop</prop>
 			</props>
 		</property>
 	</bean>
@@ -79,7 +77,7 @@
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 	<bean id="shopSessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="shopDataSource" />
 		<property name="mappingResources">
 			<list>
@@ -89,14 +87,14 @@
 		</property>
 		<property name="hibernateProperties">
 			<value>
-				hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+				hibernate.dialect=org.hibernate.dialect.H2Dialect
 			</value>
 		</property>
 		<property name="jtaTransactionManager" ref="transactionManager" />
 	</bean>
 	
 	<bean id="paySessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="payDataSource" />
 		<property name="mappingResources">
 			<list>
@@ -105,7 +103,7 @@
 		</property>
 		<property name="hibernateProperties">
 			<value>
-				hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+				hibernate.dialect=org.hibernate.dialect.H2Dialect
 			</value>
 		</property>
 		<property name="jtaTransactionManager" ref="transactionManager" />
