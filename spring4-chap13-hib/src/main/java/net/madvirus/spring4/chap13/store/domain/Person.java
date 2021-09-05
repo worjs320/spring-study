@@ -13,6 +13,9 @@ public class Person {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
+
     @Column(name = "AGE")
     private Integer age;
 
@@ -33,6 +36,14 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Integer getAge() {
