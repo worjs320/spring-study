@@ -20,3 +20,13 @@ insert into ITEM values (1, 15000);
 
 truncate TABLE  PAYMENT_INFO;
 truncate TABLE PURCHASE_ORDER;
+
+-- hibernate db의 person table
+create table PERSON
+(
+    ID int auto_increment primary key,
+    NAME varchar(255),
+    PHONE_NUMBER varchar(255),
+    AGE INT,
+    GENDER varchar(255)
+);
