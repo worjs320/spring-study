@@ -30,3 +30,10 @@ create table PERSON
     AGE INT,
     GENDER varchar(255)
 );
+
+-- hibernate db의 call_history table
+create table CALL_HISTORY
+(
+    NAME varchar(255),
+    CALL_DATE DATE
+);
