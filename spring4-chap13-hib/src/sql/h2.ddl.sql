@@ -34,6 +34,7 @@ create table PERSON
 -- hibernate db의 call_history table
 create table CALL_HISTORY
 (
+    ID int auto_increment primary key,
     NAME varchar(255),
     CALL_DATE DATE
 );
