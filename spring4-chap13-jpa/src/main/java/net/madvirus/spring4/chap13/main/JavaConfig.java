@@ -54,7 +54,7 @@ public class JavaConfig {
 		emfBean.setDataSource(dataSource());
 		emfBean.setPersistenceUnitName("store");
 		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-		jpaVendorAdapter.setDatabase(Database.MYSQL);
+		jpaVendorAdapter.setDatabase(Database.H2);
 		emfBean.setJpaVendorAdapter(jpaVendorAdapter);
 		return emfBean;
 	}
