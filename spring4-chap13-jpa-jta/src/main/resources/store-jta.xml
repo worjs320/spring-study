@@ -53,13 +53,12 @@
 		<property name="minPoolSize" value="2" />
 		<property name="maxPoolSize" value="10" />
 		<property name="xaDataSourceClassName"
-			value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+			value="org.h2.jdbcx.JdbcDataSource" />
 		<property name="xaProperties">
 			<props>
-				<prop key="user">spring4</prop>
-				<prop key="password">spring4</prop>
-				<prop key="url">jdbc:mysql://localhost/shop?characterEncoding=utf8</prop>
-				<prop key="pinGlobalTxToPhysicalConnection">true</prop>
+				<prop key="user">admin</prop>
+				<prop key="password">admin</prop>
+				<prop key="url">jdbc:h2:tcp://localhost/~/shop</prop>
 			</props>
 		</property>
 	</bean>
@@ -69,13 +68,12 @@
 		<property name="minPoolSize" value="2" />
 		<property name="maxPoolSize" value="10" />
 		<property name="xaDataSourceClassName"
-			value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+			value="org.h2.jdbcx.JdbcDataSource" />
 		<property name="xaProperties">
 			<props>
-				<prop key="user">spring4</prop>
-				<prop key="password">spring4</prop>
-				<prop key="url">jdbc:mysql://localhost/shop?characterEncoding=utf8</prop>
-				<prop key="pinGlobalTxToPhysicalConnection">true</prop>
+				<prop key="user">admin</prop>
+				<prop key="password">admin</prop>
+				<prop key="url">jdbc:h2:tcp://localhost/~/shop</prop>
 			</props>
 		</property>
 	</bean>
@@ -85,7 +83,7 @@
 
 	<bean id="jpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-		<property name="database" value="MYSQL" />
+		<property name="database" value="H2" />
 		<property name="showSql" value="true" />
 	</bean>
 
