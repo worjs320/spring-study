@@ -35,17 +35,17 @@ public class JavaConfig {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
-	@Bean(destroyMethod = "close")
+	@Bean(destroyMethod = "getLogWriter")
 	public DataSource dataSource() {
 		ComboPooledDataSource ds = new ComboPooledDataSource();
 		try {
-			ds.setDriverClass("com.mysql.jdbc.Driver");
+			ds.setDriverClass("org.h2.Driver");
 		} catch (PropertyVetoException e) {
 			throw new RuntimeException(e);
 		}
-		ds.setJdbcUrl("jdbc:mysql://localhost/shop?characterEncoding=utf8");
-		ds.setUser("spring4");
-		ds.setPassword("spring4");
+		ds.setJdbcUrl("jdbc:h2:tcp://localhost/~/shop");
+		ds.setUser("admin");
+		ds.setPassword("admin");
 		return ds;
 	}
 
