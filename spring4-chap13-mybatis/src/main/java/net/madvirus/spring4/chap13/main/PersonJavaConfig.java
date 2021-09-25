@@ -5,6 +5,7 @@ import net.madvirus.spring4.chap13.store.dao.*;
 import net.madvirus.spring4.chap13.store.service.PersonService;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -65,7 +66,7 @@ public class PersonJavaConfig {
 	@Bean
 	public MyBatisPersonDao personDao() throws Exception {
 		MyBatisPersonDao personDao = new MyBatisPersonDao();
-		personDao.setSqlSession(sqlSessionTemplate());
+//		personDao.setSqlSession(sqlSessionTemplate());
 		return personDao;
 	}
 
