@@ -2,6 +2,8 @@ package net.madvirus.spring4.chap13.main;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import net.madvirus.spring4.chap13.store.dao.*;
+import net.madvirus.spring4.chap13.store.model.Person;
+import net.madvirus.spring4.chap13.store.model.PurchaseOrder;
 import net.madvirus.spring4.chap13.store.service.PersonService;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -52,9 +54,11 @@ public class PersonJavaConfig {
 	public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(dataSource());
-		Resource[] mapperLocations = new Resource[1];
+		Resource[] mapperLocations = new Resource[2];
 		mapperLocations[0] = new ClassPathResource("/mybatis/persondao.xml");
+		mapperLocations[1] = new ClassPathResource("/mybatis/savepersondao.xml");
 		factoryBean.setMapperLocations(mapperLocations);
+		factoryBean.setTypeAliases(new Class<?>[] { Person.class });
 		return factoryBean;
 	}
 
@@ -70,6 +74,19 @@ public class PersonJavaConfig {
 		return personDao;
 	}
 
+	@Bean
+	public SavePersonDao savePersonDao() throws Exception {
+		return sqlSessionTemplate().getMapper(SavePersonDao.class);
+	}
+
+//	@Bean
+//	public SavePersonDao savePersonDao() throws Exception {
+//		MapperFactoryBean<SavePersonDao> factoryBean = new MapperFactoryBean<>();
+//		factoryBean.setMapperInterface(SavePersonDao.class);
+//		factoryBean.setSqlSessionFactory(sqlSessionFactory().getObject());
+//		factoryBean.afterPropertiesSet();
+//		return factoryBean.getObject();
+//	}
 	@Bean
 	public PersonService personService() throws Exception {
 		PersonService personService = new PersonService();

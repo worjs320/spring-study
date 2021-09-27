@@ -1,5 +1,8 @@
 package net.madvirus.spring4.chap13.store.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Person")
 public class Person {
 	private String name;
 
@@ -38,6 +41,16 @@ public class Person {
 	}
 
 	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Person() {
+	}
+
+	public Person(String name, String phoneNumber, Integer age, String gender) {
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.age = age;
 		this.gender = gender;
 	}
 

@@ -1,6 +1,7 @@
 package net.madvirus.spring4.chap13.store.service;
 
 import net.madvirus.spring4.chap13.store.dao.MyBatisPersonDao;
+import net.madvirus.spring4.chap13.store.dao.SavePersonDao;
 import net.madvirus.spring4.chap13.store.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,9 @@ public class PersonService {
 	@Autowired
 	private MyBatisPersonDao personDao;
 
+	@Autowired
+	private SavePersonDao savePersonDao;
+
 	public void setPersonDao(MyBatisPersonDao personDao) {
 		this.personDao = personDao;
 	}
@@ -18,6 +22,11 @@ public class PersonService {
 	@Transactional
 	public List<Person> getPersonListAll() {
 		return personDao.findAll();
+	}
+
+	@Transactional
+	public void insertPerson(Person person) {
+		savePersonDao.save(person);
 	}
 
 }

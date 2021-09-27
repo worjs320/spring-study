@@ -12,6 +12,13 @@ public class MainForPersonJavaConfig {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(PersonJavaConfig.class);
 
 		PersonService personService = ctx.getBean(PersonService.class);
+
+		Person personInfo = new Person();
+		personInfo.setName("test1");
+		personInfo.setAge(123);
+		personInfo.setGender("man");
+		personService.insertPerson(personInfo);
+
 		List<Person> personList =  personService.getPersonListAll();
 
 		for (Person person:personList) {
