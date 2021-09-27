@@ -17,7 +17,7 @@ public class MainForPersonJavaConfig {
 		personInfo.setName("test1");
 		personInfo.setAge(123);
 		personInfo.setGender("man");
-		personService.insertPerson(personInfo);
+		personService.deletePerson(personInfo);
 
 		List<Person> personList =  personService.getPersonListAll();
 

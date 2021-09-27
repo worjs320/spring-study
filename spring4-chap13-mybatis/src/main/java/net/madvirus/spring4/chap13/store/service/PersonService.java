@@ -1,5 +1,6 @@
 package net.madvirus.spring4.chap13.store.service;
 
+import net.madvirus.spring4.chap13.store.dao.DeletePersonDao;
 import net.madvirus.spring4.chap13.store.dao.MyBatisPersonDao;
 import net.madvirus.spring4.chap13.store.dao.SavePersonDao;
 import net.madvirus.spring4.chap13.store.model.*;
@@ -15,6 +16,9 @@ public class PersonService {
 	@Autowired
 	private SavePersonDao savePersonDao;
 
+	@Autowired
+	private DeletePersonDao deletePersonDao;
+
 	public void setPersonDao(MyBatisPersonDao personDao) {
 		this.personDao = personDao;
 	}
@@ -27,6 +31,11 @@ public class PersonService {
 	@Transactional
 	public void insertPerson(Person person) {
 		savePersonDao.save(person);
+	}
+
+	@Transactional
+	public void deletePerson(Person person) {
+		deletePersonDao.delete(person);
 	}
 
 }

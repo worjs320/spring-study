@@ -79,14 +79,15 @@ public class PersonJavaConfig {
 		return sqlSessionTemplate().getMapper(SavePersonDao.class);
 	}
 
-//	@Bean
-//	public SavePersonDao savePersonDao() throws Exception {
-//		MapperFactoryBean<SavePersonDao> factoryBean = new MapperFactoryBean<>();
-//		factoryBean.setMapperInterface(SavePersonDao.class);
-//		factoryBean.setSqlSessionFactory(sqlSessionFactory().getObject());
-//		factoryBean.afterPropertiesSet();
-//		return factoryBean.getObject();
-//	}
+	@Bean
+	public DeletePersonDao deletePersonDao() throws Exception {
+		MapperFactoryBean<DeletePersonDao> factoryBean = new MapperFactoryBean<>();
+		factoryBean.setMapperInterface(DeletePersonDao.class);
+		factoryBean.setSqlSessionFactory(sqlSessionFactory().getObject());
+		factoryBean.afterPropertiesSet();
+		return factoryBean.getObject();
+	}
+
 	@Bean
 	public PersonService personService() throws Exception {
 		PersonService personService = new PersonService();
