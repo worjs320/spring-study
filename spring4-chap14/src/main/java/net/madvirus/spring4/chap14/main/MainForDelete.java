@@ -11,7 +11,7 @@ public class MainForDelete {
 				new GenericXmlApplicationContext("classpath:/springconf.xml");
 
 		EmployeeRepository empRepository = ctx.getBean(EmployeeRepository.class);
-		empRepository.delete(9L);
+		empRepository.deleteById(9L);
 		ctx.close();
 	}
 }

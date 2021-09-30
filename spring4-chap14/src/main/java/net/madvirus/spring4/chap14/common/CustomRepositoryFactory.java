@@ -15,7 +15,6 @@ public class CustomRepositoryFactory extends JpaRepositoryFactory {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
 	protected Object getTargetRepository(RepositoryMetadata metadata) {
 		return new CustomJpaRepository(metadata.getDomainType(), entityManager);
 	}

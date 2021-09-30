@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
 public interface EmployeeRepository extends Repository<Employee, Long>, NameFindableRepository<Employee>, EmployeeCustomRepository {
 	public Employee save(Employee emp);
 
-	public Employee findOne(Long id);
+	public Employee findEmployeeById(Long id);
 
 	public Iterable<Employee> findByBirthYear(int year);
 
@@ -54,7 +54,7 @@ public interface EmployeeRepository extends Repository<Employee, Long>, NameFind
 
 	public Iterable<Employee> findByTeamIdOrderByNameDesc(Long teamId, Sort sort);
 
-	public void delete(Long id);
+	public void deleteById(Long id);
 
 	@Query("from Employee e where e.birthYear < :year order by e.birthYear")
 	public List<Employee> findEmployeeBornBefore(@Param("year") int year);

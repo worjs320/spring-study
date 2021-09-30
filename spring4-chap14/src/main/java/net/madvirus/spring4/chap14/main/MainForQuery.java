@@ -1,5 +1,6 @@
 package net.madvirus.spring4.chap14.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.madvirus.spring4.chap14.domain.Employee;
@@ -35,7 +36,7 @@ public class MainForQuery {
 
 		List<Team> teams = teamRepo.findByNameLike("S");
 		printTeams("findByNameLike(S)", teams);
-		printTeam("findByName(SW팀)", teamRepo.findByName("SW팀"));
+//		printTeam("findByName(SW팀)", teamRepo.findByName("SW팀"));
 
 		useCustomImpl(empRepo);
 		useCustomImpl(teamRepo);
@@ -55,7 +56,7 @@ public class MainForQuery {
 		printTitle("Employee findByEmployeeNumberOrNameLike(\"1234567890\", \"최\")");
 		printEmployee("Employee findByEmployeeNumberOrNameLike(\"1234567890\", \"최\")",
 				empRepo.findByEmployeeNumberOrNameLike("1234567890", "최"));
-		printEmployee("Employee findByName(\"최범균\")", empRepo.findByName("최범균"));
+//		printEmployee("Employee findByName(\"최범균\")", empRepo.findByName("최범균"));
 		// birthYear 프로퍼티 값이 1970보다 큰 엔티티가 두 개 이상이면 아래 코드는 익셉션을 발생시킨다.
 		// Employee emp2 = empRepo.findByBirthYearGreaterThan(1970);
 	}
@@ -66,46 +67,54 @@ public class MainForQuery {
 	}
 
 	private static void useSortOrPageableQueryMethod(GenericXmlApplicationContext ctx, EmployeeRepository empRepo) {
-		Sort sort = new Sort(
-				new Order(Direction.DESC, "team.id"),
-				new Order(Direction.ASC, "name")
-				);
-		printEmployees("findAll(Sort by team.id desc, name)", empRepo.findAll(sort));
+		List<Order> orderList = new ArrayList();
+		orderList.add(new Order(Direction.DESC, "team.id"));
+		orderList.add(new Order(Direction.ASC, "name"));
+		printEmployees("findAll(Sort by team.id desc, name)", empRepo.findAll(Sort.by(orderList)));
 
-		sort = new Sort("team.id", "birthYear");
-		printEmployees("findAll(Sort by team.id, birthYear)", empRepo.findAll(sort));
+		orderList.clear();
+		orderList.add(new Order(Direction.ASC, "team.id"));
+		orderList.add(new Order(Direction.ASC, "birthYear"));
+		printEmployees("findAll(Sort by team.id, birthYear)", empRepo.findAll(Sort.by(orderList)));
 
-		Team team = ctx.getBean(TeamRepository.class).findOne(1L);
-		sort = new Sort("team.id", "id");
-		printEmployees("findByTeam(team, Sort by team.id, id)", empRepo.findByTeam(team, sort));
+		Team team = ctx.getBean(TeamRepository.class).findTeamById(1L);
+		orderList.clear();
+		orderList.add(new Order(Direction.ASC, "team.id"));
+		orderList.add(new Order(Direction.ASC, "id"));
+		printEmployees("findByTeam(team, Sort by team.id, id)", empRepo.findByTeam(team, Sort.by(orderList)));
 
-		Pageable pageable = new PageRequest(2, 2, new Sort("birthYear"));
+		Pageable pageable = PageRequest.of(2, 2, Sort.by(orderList));
 
 		printEmployees("findByBirthYearLessThan", empRepo.findByBirthYearLessThan(2000, pageable));
 
-		pageable = new PageRequest(1, 4, new Sort("birthYear"));
+		pageable = PageRequest.of(1, 4, Sort.by(orderList));
 		printEmployees("List<Employee> findByTeamId", empRepo.findByTeamId(1L, pageable));
 
 		Page<Employee> empPage = empRepo.findByTeam(team, pageable);
 		printPageEmployees("Page<Employee> findByTeam(team, pageable)", empPage);
 
+		orderList.clear();
+		orderList.add(new Order(Direction.ASC, "birthYear"));
 		printEmployees("List<Employee> findByTeamIdOrderByNameDesc(teamId, sort)",
-				empRepo.findByTeamIdOrderByNameDesc(1L, new Sort("birthYear")));
+				empRepo.findByTeamIdOrderByNameDesc(1L, Sort.by("birthYear")));
 	}
 
 	private static void useQueryAnnotationMethod(EmployeeRepository empRepo) {
 		Employee employee = empRepo.findByEmployeeNumberOrNameLike("1234567910", "범");
 		printTitle("1234567910 사번 또는 이름에 '범'자 포함 = " + (employee == null ? "없음" : "존재"));
 
+		List<Order> orderList = new ArrayList();
+		orderList.add(new Order(Direction.DESC, "team.id"));
+
 		printEmployees("List<Employee> findEmployeeBornBefore(1980)", empRepo.findEmployeeBornBefore(1980));
 		printEmployees("List<Employee> findEmployeeBornBefore(1980, sort)",
-				empRepo.findEmployeeBornBefore(1980, new Sort("name")));
+				empRepo.findEmployeeBornBefore(1980, Sort.by(new Order(Direction.DESC,"name"))));
 		printEmployees("List<Employee> findEmployeeBornBefore(1980, sort)",
-				empRepo.findEmployeeBornBefore(1980, new PageRequest(1, 2, new Sort("name"))));
+				empRepo.findEmployeeBornBefore(1980, PageRequest.of(1, 2, Sort.by(new Order(Direction.DESC,"name")))));
 	}
 
 	private static void useCustomImpl(EmployeeRepository empRepo) {
-		printOptionResult("Option<Employee> getOptionEmployee(1L)", empRepo.getOptionEmployee(1L));
+//		printOptionResult("Option<Employee> getOptionEmployee(1L)", empRepo.getOptionEmployee(1L));
 		printOptionResult("Option<Employee> getOption(1L)", empRepo.getOption(1L));
 		printOptionResult("Option<Employee> getOption(2L)", empRepo.getOption(100L));
 	}

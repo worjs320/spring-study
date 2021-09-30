@@ -12,7 +12,7 @@ public interface TeamRepository extends Repository<Team, Long>, NameFindableRepo
 
 	Iterable<Team> findAll();
 
-	Team findOne(Long id);
+	Team findTeamById(Long id);
 
 	@Query(value = "select * from TEAM where NAME like ?1%", nativeQuery = true)
 	List<Team> findByNameLike(String name);

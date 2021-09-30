@@ -4,7 +4,7 @@ import static net.madvirus.spring4.chap14.domain.EmployeeSpec.employeeNumberEq;
 import static net.madvirus.spring4.chap14.domain.EmployeeSpec.joinedDateGt;
 import static net.madvirus.spring4.chap14.domain.EmployeeSpec.nameEq;
 import static net.madvirus.spring4.chap14.domain.EmployeeSpec.teamIdEq;
-import static org.springframework.data.jpa.domain.Specifications.where;
+//import static org.springframework.data.jpa.domain.Specifications.where;
 
 import java.util.Calendar;
 import java.util.List;
@@ -14,8 +14,9 @@ import javax.transaction.Transactional;
 import net.madvirus.spring4.chap14.domain.Employee;
 import net.madvirus.spring4.chap14.domain.EmployeeRepository;
 
+import net.madvirus.spring4.chap14.domain.EmployeeSpec;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specifications;
+//import org.springframework.data.jpa.domain.Specifications;
 
 public class SpecEmployeeListService implements EmployeeListService {
 
@@ -32,13 +33,12 @@ public class SpecEmployeeListService implements EmployeeListService {
 		if (hasValue(keyword) || hasValue(teamId)) {
 			if (hasValue(keyword) && !hasValue(teamId)) {
 				return employeeRepository.findAll(
-						where(nameEq(keyword)).or(employeeNumberEq(keyword))
+						EmployeeSpec.nameEq(keyword).or(employeeNumberEq(keyword))
 				);
 			} else if (!hasValue(keyword) && hasValue(teamId)) {
 				return employeeRepository.findAll(teamIdEq(teamId));
 			} else {
-				Specifications<Employee> spec1 = where(nameEq(keyword)).or(employeeNumberEq(keyword));
-				return employeeRepository.findAll(spec1.and(teamIdEq(teamId)));
+				return employeeRepository.findAll(EmployeeSpec.nameEq(keyword).or(employeeNumberEq(keyword)).and(teamIdEq(teamId)));
 			}
 		} else {
 			Calendar cal = Calendar.getInstance();
