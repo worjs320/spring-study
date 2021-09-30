@@ -26,11 +26,10 @@
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost/hrdb?characterEncoding=utf8" />
-		<property name="user" value="spring4" />
-		<property name="password" value="spring4" />
+		<property name="driverClass" value="org.h2.Driver" />
+		<property name="jdbcUrl" value="jdbc:h2:tcp://localhost/~/company" />
+		<property name="user" value="admin" />
+		<property name="password" value="admin" />
 	</bean>
 
 	<bean
@@ -38,7 +37,7 @@
 
 	<bean id="jpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-		<property name="database" value="MYSQL" />
+		<property name="database" value="H2" />
 		<property name="showSql" value="true" />
 	</bean>
 
