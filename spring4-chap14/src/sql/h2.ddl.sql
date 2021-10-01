@@ -39,3 +39,20 @@ values ('5', '전길남', '일본', '오사카', 'XXXYYY', 1943, 1, '2014-01-02'
 
 insert into EMPLOYEE (EMPLOYEE_NUM, NAME, HOME_ADDR1, HOME_ADDR2, HOME_ZIPCODE, BIRTH_YEAR, TEAM_ID, JOINED_DATE)
 values ('1234567895', '제임스고슬링', '캐나다', '어딘가', 'XXXYYY', 1955, 1, '2014-06-01');
+
+create table PERSON (
+    PERSON_ID int auto_increment primary key,
+    NAME varchar(100),
+    GENDER varchar(10),
+    EMAIL varchar(50),
+    BIRTHDAY date
+);
+
+create table PHONE_LIST (
+    PERSON_ID int auto_increment primary key,
+    PHONE_NUMBER varchar(100)
+);
+
+insert into PERSON (PERSON_ID, NAME, GENDER, EMAIL, BIRTHDAY) values (1, '발악', '남', 'barak@naver.com', 2000-03-20);
+insert into PERSON (PERSON_ID, NAME, GENDER, EMAIL, BIRTHDAY) values (2, '발악2', '남2', 'barak@naver.com', 2000-03-21);
+insert into PHONE_LIST (PERSON_ID, PHONE_NUMBER) values (1, '010-1233-1233');
