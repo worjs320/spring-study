@@ -6,6 +6,8 @@ import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 public interface PersonRepository extends Repository<Person, Long> {
 	Person save(Person person);
@@ -15,4 +17,6 @@ public interface PersonRepository extends Repository<Person, Long> {
 	void updatePersonsName(@Param("prevName") String pervName, @Param("newName") String newName);
 
 	void deleteByName(String name);
+
+	List<Person> findAll();
 }
