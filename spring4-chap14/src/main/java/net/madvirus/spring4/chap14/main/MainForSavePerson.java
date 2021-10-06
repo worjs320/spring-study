@@ -15,7 +15,7 @@ public class MainForSavePerson {
 
         PersonRepository personRepository = ctx.getBean(PersonRepository.class);
         Date birthDate = new SimpleDateFormat("yyyy-MM-dd").parse("2000-03-20");
-        Person person = new Person(null, "Barak3", "123", "123", birthDate);
+        Person person = new Person("Barak3", "123", "123", birthDate);
         personRepository.save(person);
         ctx.close();
     }
