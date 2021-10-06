@@ -48,11 +48,11 @@ create table PERSON (
     BIRTHDAY date
 );
 
-create table PHONE_LIST (
-    PERSON_ID int auto_increment primary key,
+create table PHONE (
+    PERSON_ID int,
     PHONE_NUMBER varchar(100)
 );
 
 insert into PERSON (PERSON_ID, NAME, GENDER, EMAIL, BIRTHDAY) values (1, '발악', '남', 'barak@naver.com', 2000-03-20);
 insert into PERSON (PERSON_ID, NAME, GENDER, EMAIL, BIRTHDAY) values (2, '발악2', '남2', 'barak@naver.com', 2000-03-21);
-insert into PHONE_LIST (PERSON_ID, PHONE_NUMBER) values (1, '010-1233-1233');
+insert into PHONE (PERSON_ID, PHONE_NUMBER) values (1, '010-1233-1233');
