@@ -1,5 +1,6 @@
 package net.madvirus.spring4.chap14.domain;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
@@ -19,4 +20,6 @@ public interface PersonRepository extends Repository<Person, Long> {
 	void deleteByName(String name);
 
 	List<Person> findAll();
+
+	List<Person> findAll(Sort sort);
 }
