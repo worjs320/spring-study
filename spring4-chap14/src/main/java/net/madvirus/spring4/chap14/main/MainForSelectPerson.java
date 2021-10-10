@@ -11,7 +11,9 @@ import org.springframework.data.domain.Sort;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainForSelectPerson {
@@ -21,13 +23,24 @@ public class MainForSelectPerson {
 
         PersonRepository personRepository = ctx.getBean(PersonRepository.class);
 //        Pageable pageable = PageRequest.of(1, 2, Sort.by(Sort.Order.asc("name"), Sort.Order.desc("id")));
-        List<Person> personListByName = personRepository.findAll(PersonSpec.nameEq("2"));
-        List<Person> personListByBirthdate = personRepository.findAll(PersonSpec.birthdayBtw(getDate("2000-03-01"), getDate("2000-03-20")));
-        for (Person person : personListByName) {
-            System.out.println(person);
-        }
+//        List<Person> personListByName = personRepository.findAll(PersonSpec.nameEq("2"));
+//        List<Person> personListByBirthdate = personRepository.findAll(PersonSpec.birthdayBtw(getDate("2000-03-01"), getDate("2000-03-20")));
+//        for (Person person : personListByName) {
+//            System.out.println(person);
+//        }
+//
+//        for (Person person : personListByBirthdate) {
+//            System.out.println(person);
+//        }
 
-        for (Person person : personListByBirthdate) {
+        Map<String, Object> searchParams = new HashMap<>();
+        searchParams.put("name", "1");
+        searchParams.put("gender", "man");
+        searchParams.put("start_BIRTHDATE", getDate("2000-03-19"));
+        searchParams.put("end_BIRTHDATE", getDate("2000-03-20"));
+        List<Person> personListSearch = personRepository.findAll(PersonSpec.search(searchParams));
+
+        for (Person person : personListSearch) {
             System.out.println(person);
         }
 
