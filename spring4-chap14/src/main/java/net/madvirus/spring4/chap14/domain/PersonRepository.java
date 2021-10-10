@@ -2,6 +2,7 @@ package net.madvirus.spring4.chap14.domain;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
@@ -25,4 +26,6 @@ public interface PersonRepository extends Repository<Person, Long> {
 	List<Person> findAll(Sort sort);
 
 	List<Person> findAll(Pageable pageable);
+
+	List<Person> findAll(Specification<Person> specification);
 }
