@@ -31,13 +31,13 @@ public class SpringAppConfig {
 	public DataSource dataSource() {
 		ComboPooledDataSource ds = new ComboPooledDataSource();
 		try {
-			ds.setDriverClass("com.mysql.jdbc.Driver");
+			ds.setDriverClass("org.h2.Driver");
 		} catch (PropertyVetoException e) {
 			throw new RuntimeException(e);
 		}
-		ds.setJdbcUrl("jdbc:mysql://localhost/hrdb?characterEncoding=utf8");
-		ds.setUser("spring4");
-		ds.setPassword("spring4");
+		ds.setJdbcUrl("jdbc:h2:tcp://localhost/~/chap15");
+		ds.setUser("admin");
+		ds.setPassword("admin");
 		return ds;
 	}
 
