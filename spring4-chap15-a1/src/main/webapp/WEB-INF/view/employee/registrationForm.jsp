@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form:form commandName="newEmployee">
+<form:form modelAttribute="newEmployee">
 <label for="number">사번</label>:
 <form:input path="number"/>
 <form:errors path="number" />
