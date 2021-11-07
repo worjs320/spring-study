@@ -1,7 +1,7 @@
 package net.madvirus.spring4.chap15.common;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
 
 import java.util.Arrays;
 import java.util.List;
