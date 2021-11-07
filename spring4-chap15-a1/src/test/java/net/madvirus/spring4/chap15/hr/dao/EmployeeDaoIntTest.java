@@ -34,7 +34,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 		DirtiesContextTestExecutionListener.class,
 		TransactionalTestExecutionListener.class,
 		DbUnitTestExecutionListener.class })
-@DatabaseSetup("Employee.xml")
+@DatabaseSetup("classpath:/Employee.xml")
 public class EmployeeDaoIntTest {
 
 	@Autowired
