@@ -14,7 +14,7 @@ public class ChangePasswordServiceImpl implements ChangePasswordService {
 	@Transactional
 	@Override
 	public void changePassword(ChangePasswordRequest req) {
-		Member member = memberRepository.findOne(req.getMemberId());
+		Member member = memberRepository.findById(req.getMemberId());
 		if (member == null)
 			throw new MemberNotFoundException();
 

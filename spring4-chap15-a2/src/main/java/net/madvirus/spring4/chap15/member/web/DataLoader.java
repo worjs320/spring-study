@@ -14,7 +14,7 @@ public class DataLoader {
 
 	@Transactional
 	public Member loadMember(Long memberId) {
-		Member member = memberRepository.findOne(memberId);
+		Member member = memberRepository.findById(memberId);
 		if (member == null)
 			return null;
 		Hibernate.initialize(member.getLocker());

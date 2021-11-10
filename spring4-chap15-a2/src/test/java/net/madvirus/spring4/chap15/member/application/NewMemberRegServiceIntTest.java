@@ -61,7 +61,7 @@ public class NewMemberRegServiceIntTest {
 		req.setPassword("123456");
 		Long newMemberId = newMemberRegService.register(req);
 
-		Member newMember = memberRepository.findOne(newMemberId);
+		Member newMember = memberRepository.findById(newMemberId);
 		assertThat(newMember, notNullValue());
 		assertThat(newMember.getName(), equalTo("최범균2"));
 		assertThat(newMember.getUserId(), equalTo("madvirus2"));

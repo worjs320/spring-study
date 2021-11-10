@@ -4,7 +4,7 @@ import org.springframework.data.repository.Repository;
 
 public interface MemberRepository extends Repository<Member, Long> {
 
-	Member findOne(Long id);
+	Member findById(Long id);
 
 	Member findByUserId(String userId);
 

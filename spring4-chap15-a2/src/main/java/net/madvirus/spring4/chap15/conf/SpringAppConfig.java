@@ -1,6 +1,6 @@
 package net.madvirus.spring4.chap15.conf;
 
-import java.beans.PropertyVetoException;
+import java.util.HashMap;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -14,6 +14,7 @@ import net.madvirus.spring4.chap15.member.web.DataLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
@@ -21,24 +22,22 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "net.madvirus.spring4.chap15.member.domain")
 public class SpringAppConfig {
 
-	@Bean(destroyMethod = "close")
+	@Bean
 	public DataSource dataSource() {
-		ComboPooledDataSource ds = new ComboPooledDataSource();
+		DriverManagerDataSource ds = new DriverManagerDataSource();
 		try {
-			ds.setDriverClass("com.mysql.jdbc.Driver");
-		} catch (PropertyVetoException e) {
+			ds.setDriverClassName("org.h2.Driver");
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		ds.setJdbcUrl("jdbc:mysql://localhost/memberdb?characterEncoding=utf8");
-		ds.setUser("spring4");
-		ds.setPassword("spring4");
+		ds.setUrl("jdbc:h2:tcp://localhost/~/chap15-2");
+		ds.setUsername("admin");
+		ds.setPassword("admin");
 		return ds;
 	}
 
@@ -55,9 +54,14 @@ public class SpringAppConfig {
 		emf.setDataSource(dataSource());
 		emf.setPackagesToScan("net.madvirus.spring4.chap15.member.domain");
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-		adapter.setDatabase(Database.MYSQL);
+		adapter.setDatabase(Database.H2);
 		adapter.setShowSql(true);
 		emf.setJpaVendorAdapter(adapter);
+
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("hibernate.hbm2ddl.auto", "create-drop");
+		map.put("hibernate.format_sql", "true");
+		emf.setJpaPropertyMap(map);
 		return emf;
 	}
 
