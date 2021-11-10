@@ -49,4 +49,12 @@ public class Locker {
 		this.occupied = occupied;
 	}
 
+	@Override
+	public String toString() {
+		return "Locker{" +
+				"id=" + id +
+				", size=" + size +
+				", occupied=" + occupied +
+				'}';
+	}
 }

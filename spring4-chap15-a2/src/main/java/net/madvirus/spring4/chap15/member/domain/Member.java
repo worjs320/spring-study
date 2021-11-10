@@ -29,7 +29,7 @@ public class Member {
 	@Column(name = "NAME")
 	private String name;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "LOCKER_ID")
 	private Locker locker;
 
@@ -78,4 +78,15 @@ public class Member {
 		return locker;
 	}
 
+	@Override
+	public String toString() {
+		return "Member{" +
+				"id=" + id +
+				", userId='" + userId + '\'' +
+				", encPassword='" + encPassword + '\'' +
+				", email='" + email + '\'' +
+				", name='" + name + '\'' +
+				", locker=" + locker.toString() +
+				'}';
+	}
 }
