@@ -3,7 +3,7 @@ package net.madvirus.spring4.chap15.member.application;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.*;
 import net.madvirus.spring4.chap15.conf.SpringAppConfig;
 import net.madvirus.spring4.chap15.member.domain.Member;
 import net.madvirus.spring4.chap15.member.domain.MemberRepository;
@@ -27,7 +27,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 		DirtiesContextTestExecutionListener.class,
 		TransactionalTestExecutionListener.class,
 		DbUnitTestExecutionListener.class })
-@DatabaseSetup("../domain/Member.xml")
+@DatabaseSetup("classpath:/Member.xml")
 public class NewMemberRegServiceIntTest {
 
 	@Autowired
