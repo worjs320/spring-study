@@ -1,11 +1,6 @@
 package net.madvirus.spring4.chap15.member.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "LOCKER")
@@ -17,8 +12,8 @@ public class Locker {
 	@Column(name = "LOCKER_SIZE")
 	private int size;
 
-	@Column(name = "OCCUPIED")
-	@Type(type = "yes_no")
+	@Column(name = "OCCUPIED", columnDefinition = "CHAR(1)")
+	@Convert(converter = YNToBooleanConverter.class)
 	private boolean occupied;
 
 	protected Locker() {
