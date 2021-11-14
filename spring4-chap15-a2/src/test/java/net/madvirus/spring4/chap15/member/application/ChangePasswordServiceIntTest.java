@@ -4,6 +4,7 @@ import static org.junit.Assert.fail;
 import net.madvirus.spring4.chap15.conf.SpringAppConfig;
 import net.madvirus.spring4.chap15.member.domain.WrongPasswordException;
 
+import net.madvirus.spring4.chap15.member.exception.MemberNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

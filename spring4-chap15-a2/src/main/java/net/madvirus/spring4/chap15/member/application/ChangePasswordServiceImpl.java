@@ -3,6 +3,7 @@ package net.madvirus.spring4.chap15.member.application;
 import net.madvirus.spring4.chap15.member.domain.Member;
 import net.madvirus.spring4.chap15.member.domain.MemberRepository;
 
+import net.madvirus.spring4.chap15.member.exception.MemberNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,10 +15,9 @@ public class ChangePasswordServiceImpl implements ChangePasswordService {
 	@Transactional
 	@Override
 	public void changePassword(ChangePasswordRequest req) {
-		Member member = memberRepository.findById(req.getMemberId());
-		if (member == null)
-			throw new MemberNotFoundException();
-
+		Member member = memberRepository.findById(req.getMemberId()).orElseThrow(() -> {
+			throw new MemberNotFoundException(req.getMemberId());
+		});
 		member.changePassword(req.getCurrentPassword(), req.getNewPassword());
 	}
 

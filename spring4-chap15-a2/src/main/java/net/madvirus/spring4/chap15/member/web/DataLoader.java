@@ -1,5 +1,6 @@
 package net.madvirus.spring4.chap15.member.web;
 
+import net.madvirus.spring4.chap15.member.exception.MemberNotFoundException;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +15,9 @@ public class DataLoader {
 
 	@Transactional
 	public Member loadMember(Long memberId) {
-		Member member = memberRepository.findById(memberId);
+		Member member = memberRepository.findById(memberId).orElseThrow(() -> {
+			throw new MemberNotFoundException(memberId);
+		});
 		if (member == null)
 			return null;
 		Hibernate.initialize(member.getLocker());

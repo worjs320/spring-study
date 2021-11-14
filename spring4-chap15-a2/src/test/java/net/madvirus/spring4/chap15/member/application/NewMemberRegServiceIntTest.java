@@ -8,6 +8,7 @@ import net.madvirus.spring4.chap15.conf.SpringAppConfig;
 import net.madvirus.spring4.chap15.member.domain.Member;
 import net.madvirus.spring4.chap15.member.domain.MemberRepository;
 
+import net.madvirus.spring4.chap15.member.exception.MemberNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,9 @@ public class NewMemberRegServiceIntTest {
 		req.setPassword("123456");
 		Long newMemberId = newMemberRegService.register(req);
 
-		Member newMember = memberRepository.findById(newMemberId);
+		Member newMember = memberRepository.findById(newMemberId).orElseThrow(() -> {
+			throw new MemberNotFoundException(newMemberId);
+		});
 		assertThat(newMember, notNullValue());
 		assertThat(newMember.getName(), equalTo("최범균2"));
 		assertThat(newMember.getUserId(), equalTo("madvirus2"));
