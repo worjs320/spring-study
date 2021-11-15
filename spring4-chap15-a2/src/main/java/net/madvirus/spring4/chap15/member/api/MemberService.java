@@ -2,6 +2,8 @@ package net.madvirus.spring4.chap15.member.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import net.madvirus.spring4.chap15.member.application.ChangePasswordService;
+import net.madvirus.spring4.chap15.member.application.NewChangePasswordRequest;
 import net.madvirus.spring4.chap15.member.domain.Member;
 import net.madvirus.spring4.chap15.member.domain.MemberRepository;
 import net.madvirus.spring4.chap15.member.exception.MemberNotFoundException;
@@ -17,6 +19,9 @@ public class MemberService {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private ChangePasswordService changePasswordService;
 
     @ApiOperation(value = "Get all member list", response = Member.class, responseContainer = "List")
     @GetMapping("/members")
@@ -56,5 +61,11 @@ public class MemberService {
     @DeleteMapping("/members/{id}")
     public Member deleteMember(@PathVariable Long id) {
         return memberRepository.deleteById(id);
+    }
+
+    @ApiOperation(value = "Change member's password", response = Member.class)
+    @PutMapping("/members/{id}/password")
+    public void changeMemberPassword(@RequestBody NewChangePasswordRequest newChangePasswordRequest, @PathVariable Long id) {
+        changePasswordService.changePassword(id, newChangePasswordRequest);
     }
 }

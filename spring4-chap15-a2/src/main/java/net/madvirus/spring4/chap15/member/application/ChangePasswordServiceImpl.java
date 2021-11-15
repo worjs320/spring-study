@@ -21,4 +21,11 @@ public class ChangePasswordServiceImpl implements ChangePasswordService {
 		member.changePassword(req.getCurrentPassword(), req.getNewPassword());
 	}
 
+	public void changePassword(Long memberId, NewChangePasswordRequest req) {
+		Member member = memberRepository.findById(memberId).orElseThrow(() -> {
+			throw new MemberNotFoundException(memberId);
+		});
+		member.changePassword(req.getCurrentPassword(), req.getNewPassword());
+		memberRepository.save(member);
+	}
 }
